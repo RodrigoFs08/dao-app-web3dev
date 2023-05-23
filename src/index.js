@@ -2,8 +2,9 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { Sepolia } from "@thirdweb-dev/chains";
 
-// Import thirdweb provider and Goerli ChainId
+// Import thirdweb provider and Sepolia ChainId
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import { ChainId } from '@thirdweb-dev/sdk';
 
@@ -15,7 +16,7 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    <ThirdwebProvider desiredChainId={activeChainId}>
+    <ThirdwebProvider activeChain={Sepolia}>
       <App />
     </ThirdwebProvider>
   </React.StrictMode>,
