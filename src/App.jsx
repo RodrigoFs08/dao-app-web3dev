@@ -1,11 +1,15 @@
-import { useAddress, ConnectWallet, Web3Button, useContract, useNFTBalance } from '@thirdweb-dev/react';
+import { useAddress, ConnectWallet, Web3Button, useContract, useNFTBalance,useNetwork } from '@thirdweb-dev/react';
 import { useState, useEffect, useMemo } from 'react';
 import { AddressZero } from "@ethersproject/constants";
+import { ChainId } from '@thirdweb-dev/sdk';
 
 const App = () => {
   // Usando os hooks que o thirdweb nos dá.
   const address = useAddress();
   console.log("👋 Address:", address);
+
+  const network = useNetwork();
+
 
   // inicializar o contrato editionDrop
   const editionDropAddress = "0x33472c022d16241593F556Da760386c8932d3FA1"
@@ -138,6 +142,17 @@ const App = () => {
     });
   }, [memberAddresses, memberTokenAmounts]);
 
+  if (address && (network?.[0].data.chain.id !== ChainId.Sepolia)) {
+    return (
+      <div className="unsupported-network">
+        <h2>Por favor, conecte-se à rede Sepolia</h2>
+        <p>
+          Essa dapp só funciona com a rede Sepolia, por favor 
+          troque de rede na sua carteira.
+        </p>
+      </div>
+    );
+  }
   // Se ele não tiver uma carteira conectada vamos chamar Connect Wallet
   if (!address) {
     return (
@@ -155,7 +170,7 @@ const App = () => {
   if (hasClaimedNFT) {
     return (
       <div className="member-page">
-        <h1>Página dos membros da DAO</h1>
+        <h1>Página dos membros da BASKA DAO</h1>
         <p>Parabéns por fazer parte desse clube de ballers!</p>
         <div>
           <div>
