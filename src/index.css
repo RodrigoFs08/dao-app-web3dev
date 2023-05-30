@@ -4,7 +4,7 @@ body {
   font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FF4500;
+  background: linear-gradient(to right, #000000, #FF4500);
   color: #fff;
   overflow-x: hidden;
 }
@@ -93,7 +93,8 @@ h1 {
 
 .member-page form h5 {
   margin-top: 0;
-  color: #7700ee;
+  color: #000000
+  ;
 }
 
 .member-page form .card > div {
